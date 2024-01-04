@@ -78,7 +78,7 @@ const alcoholLimit = (beers, abvLimit) => {
                 name: beers[i].name,
                 abv: beers[i].abv,
                 ibu: beers[i].ibu
-              }
+            }
             abvArray.push( beerObject )
         }
 
@@ -88,7 +88,68 @@ const alcoholLimit = (beers, abvLimit) => {
     return abvArray
 }
 
-console.log( alcoholLimit( beers, 5 ) )
+/* console.log( alcoholLimit( beers, 5 ) ) */
 
 
 
+const $table = document.getElementById("tabla")
+
+$table.appendChild(document.createElement('thead'))
+
+const $thead = document.querySelector('thead')
+
+
+
+const tittle = document.createElement('th')
+
+tittle.textContent = "Beer"
+
+const abvTh = document.createElement('th')
+
+abvTh.textContent = "ABV"
+
+const ibuTh = document.createElement('th')
+
+ibuTh.textContent = "IBU"
+
+$thead.appendChild(tittle)
+$thead.appendChild(abvTh)
+$thead.appendChild(ibuTh)
+
+$table.appendChild(document.createElement('tbody'))
+
+const $tbody = document.querySelector('tbody')
+
+const fragment = document.createDocumentFragment()
+
+const createRow = (beers) => {
+    const $row = document.createElement('tr')
+
+    const nameCell  = document.createElement('td')
+
+    nameCell.textContent = beers.name
+    
+    $row.appendChild(nameCell);
+
+    const abvCell  = document.createElement('td')
+
+    abvCell.textContent = beers.abv
+    
+    $row.appendChild(abvCell);
+
+    const ibuCell  = document.createElement('td')
+
+    ibuCell.textContent = beers.ibu
+    
+    $row.appendChild(ibuCell);
+
+    return $row
+}
+
+beers.forEach(beer => fragment.appendChild(createRow(beer)))
+
+$tbody.appendChild(fragment)
+
+const $main = document.getElementById('main')
+
+$main.classList.add("flex bg-red-600") 
